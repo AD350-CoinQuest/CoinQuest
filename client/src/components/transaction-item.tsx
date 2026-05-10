@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native-unistyles";
 import { View, Text } from "react-native";
 
 import type { ViewStyle, StyleProp } from "react-native";
+import { Colors } from "@/constants/theme";
 
 export interface TransactionItemProps {
 	dateString: string;
@@ -46,12 +47,12 @@ const styles = StyleSheet.create({
 		paddingBottom: 11,
 		paddingRight: 0,
 		alignItems: "center",
-		gap: "item.spacing.375_15",
+		gap: 375,
 		borderBottomWidth: 1,
 	},
 	dateText: {
-		color: "Color.Surface",
-		fontFamily: "font.family.Font.1",
+		color: Colors.surface,
+		fontFamily: "Roboto",
 		fontSize: 10,
 		fontStyle: "normal",
 		fontWeight: 700,
@@ -66,8 +67,8 @@ const styles = StyleSheet.create({
 		alignSelf: "stretch",
 	},
 	merchantText: {
-		color: "rgba(250, 129, 40, 1)",
-		fontFamily: "font.family.Font.1",
+		color: Colors.highlight,
+		fontFamily: "Roboto",
 		fontSize: 14,
 		fontStyle: "normal",
 		fontWeight: 700,
@@ -79,8 +80,8 @@ const styles = StyleSheet.create({
 		alignSelf: "stretch",
 	},
 	amountText: {
-		color: "rgba(250, 129, 40, 1)",
-		fontFamily: "font.family.Font.1",
+		color: Colors.highlight,
+		fontFamily: "Roboto",
 		fontSize: 16,
 		fontStyle: "normal",
 		fontWeight: 700,

@@ -5,10 +5,11 @@ import { View, Text } from "react-native";
 import StaticIcon from "./static-icon";
 
 import type { ViewStyle, StyleProp } from "react-native";
+import { Colors } from "@/constants/theme";
 
 export interface NavNavbarProps {
 	navTransactions: string;
-	property1: (typeof NavNavbarVariants.property1)[number];
+	variant: (typeof NavNavbarVariants.variant)[number];
 	/** Used to override the default root style. */
 	style?: StyleProp<ViewStyle>;
 	/** Used to locate this view in end-to-end tests. */
@@ -16,12 +17,12 @@ export interface NavNavbarProps {
 }
 
 export const NavNavbarVariants = {
-	property1: ["NavProfile", "NavHome", "NavTransactions", "NavAchievements"],
+	variant: ["NavProfile", "NavHome", "NavTransactions", "NavAchievements"],
 } as const;
 
 export function NavNavbar(props: NavNavbarProps) {
-	const { property1 } = props;
-	const { vstyles } = useVariants(NavNavbarVariants, { property1 }, styles);
+	const { variant } = props;
+	const { vstyles } = useVariants(NavNavbarVariants, { variant }, styles);
 
 	return (
 		<View
@@ -40,7 +41,7 @@ export function NavNavbar(props: NavNavbarProps) {
 				</View>
 				<View testID="115:517" style={vstyles.margin2()}>
 					<Text testID="115:518" style={vstyles.home()}>
-						{`HOME`}
+						HOME
 					</Text>
 				</View>
 			</View>
@@ -56,7 +57,7 @@ export function NavNavbar(props: NavNavbarProps) {
 				</View>
 				<View testID="115:523" style={vstyles.margin4()}>
 					<Text testID="137:444" style={vstyles.transactions()}>
-						{`TRANSACTIONS`}
+						TRANSACTIONS
 					</Text>
 				</View>
 			</View>
@@ -72,7 +73,7 @@ export function NavNavbar(props: NavNavbarProps) {
 				</View>
 				<View testID="115:529" style={vstyles.margin6()}>
 					<Text testID="115:530" style={vstyles.achievements()}>
-						{`ACHIEVEMENTS`}
+						ACHIEVEMENTS
 					</Text>
 				</View>
 			</View>
@@ -88,7 +89,7 @@ export function NavNavbar(props: NavNavbarProps) {
 				</View>
 				<View testID="115:535" style={styles.margin8}>
 					<Text testID="115:536" style={vstyles.profile()}>
-						{`PROFILE`}
+						PROFILE
 					</Text>
 				</View>
 			</View>
@@ -106,8 +107,8 @@ const styles = StyleSheet.create({
 		position: "absolute",
 		left: 20,
 		top: 20,
-		borderTop: "stroke.weight.1",
-		backgroundColor: "Color.Primary",
+		borderTop: 1,
+		backgroundColor: Colors.primary,
 	},
 	divNavItem: {
 		flexDirection: "column",
@@ -119,23 +120,11 @@ const styles = StyleSheet.create({
 		alignSelf: "stretch",
 	},
 	margin: {
-		width: 64,
-		height: 68,
+		width: 48,
+		height: 52,
 		paddingBottom: 4,
 		flexDirection: "column",
 		alignItems: "flex-start",
-	},
-	marginProperty1NavTransactions: {
-		width: 48,
-		height: 52,
-	},
-	marginProperty1NavAchievements: {
-		width: 48,
-		height: 52,
-	},
-	marginProperty1NavProfile: {
-		width: 48,
-		height: 52,
 	},
 	divIconBox: {
 		flexDirection: "row",
@@ -154,7 +143,7 @@ const styles = StyleSheet.create({
 		borderTopRightRadius: 14,
 		borderWidth: 5,
 		borderStyle: "solid",
-		borderColor: "Color.Secondary",
+		borderColor: Colors.secondary,
 	},
 	divIconBoxProperty1NavTransactions: {
 		width: 48,
@@ -168,7 +157,7 @@ const styles = StyleSheet.create({
 		borderTopLeftRadius: 10,
 		borderTopRightRadius: 10,
 		borderWidth: 2,
-		backgroundColor: "Color.Primary",
+		backgroundColor: Colors.primary,
 	},
 	divIconBoxProperty1NavAchievements: {
 		width: 48,
@@ -182,7 +171,7 @@ const styles = StyleSheet.create({
 		borderTopLeftRadius: 10,
 		borderTopRightRadius: 10,
 		borderWidth: 2,
-		backgroundColor: "Color.Primary",
+		backgroundColor: Colors.primary,
 	},
 	divIconBoxProperty1NavProfile: {
 		width: 48,
@@ -196,10 +185,10 @@ const styles = StyleSheet.create({
 		borderTopLeftRadius: 10,
 		borderTopRightRadius: 10,
 		borderWidth: 2,
-		backgroundColor: "Color.Primary",
+		backgroundColor: Colors.primary,
 	},
 	home: {
-		color: "Color.Secondary",
+		color: Colors.secondary,
 		fontFamily: "Roboto",
 		fontSize: 12,
 		fontStyle: "normal",
@@ -259,13 +248,13 @@ const styles = StyleSheet.create({
 		borderTopRightRadius: 14,
 		borderWidth: 1,
 		borderStyle: "solid",
-		borderColor: "Color.Secondary",
+		borderColor: Colors.secondary,
 	},
 	divIconBox2Property1NavTransactions: {
 		borderWidth: 5,
 	},
 	transactions: {
-		color: "Color.Secondary",
+		color: Colors.secondary,
 		fontFamily: "Roboto",
 		fontSize: 12,
 		fontStyle: "normal",
@@ -316,13 +305,13 @@ const styles = StyleSheet.create({
 		borderTopRightRadius: 14,
 		borderWidth: 1,
 		borderStyle: "solid",
-		borderColor: "Color.Secondary",
+		borderColor: Colors.secondary,
 	},
 	divIconBox3Property1NavAchievements: {
 		borderWidth: 5,
 	},
 	achievements: {
-		color: "Color.Secondary",
+		color: Colors.secondary,
 		fontFamily: "Roboto",
 		fontSize: 12,
 		fontStyle: "normal",
@@ -373,13 +362,13 @@ const styles = StyleSheet.create({
 		borderTopRightRadius: 14,
 		borderWidth: 1,
 		borderStyle: "solid",
-		borderColor: "Color.Secondary",
+		borderColor: Colors.secondary,
 	},
 	divIconBox4Property1NavProfile: {
 		borderWidth: 5,
 	},
 	profile: {
-		color: "Color.Secondary",
+		color: Colors.secondary,
 		fontFamily: "Roboto",
 		fontSize: 12,
 		fontStyle: "normal",

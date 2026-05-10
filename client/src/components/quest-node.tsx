@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native-unistyles";
 import { View, Text } from "react-native";
 import type { ViewStyle, StyleProp } from "react-native";
 import StaticIcon from "./static-icon";
+import { Colors } from "@/constants/theme";
 
 export interface DivQuestNodeProps {
 	iconSrc: string;
@@ -40,16 +41,16 @@ const styles = StyleSheet.create({
 		borderTopRightRadius: 12,
 		borderWidth: 3,
 		borderStyle: "solid",
-		borderColor: "color.black.solid",
-		backgroundColor: "Color.Warning",
+		borderColor: "black",
+		backgroundColor: Colors.surface,
 		shadowColor: "rgba(0, 0, 0, 1)",
 		shadowRadius: 0,
 		shadowOffset: { width: 4, height: 4 },
 	},
 	label: {
-		color: "Color.Background",
+		color: Colors.background,
 		textAlign: "center",
-		fontFamily: "font.family.Font.2",
+		fontFamily: "Roboto",
 		fontSize: 10,
 		fontStyle: "normal",
 		fontWeight: 700,

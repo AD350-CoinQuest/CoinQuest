@@ -4,6 +4,7 @@ import { View, Text } from "react-native";
 import type { ViewStyle, StyleProp } from "react-native";
 
 export interface ButtonProps {
+	label: string;
 	/** Used to override the default root style. */
 	style?: StyleProp<ViewStyle>;
 	/** Used to locate this view in end-to-end tests. */
@@ -15,7 +16,7 @@ export function Button(props: ButtonProps) {
 		<View testID={props.testID ?? "72:123"} style={[styles.root, props.style]}>
 			<View testID="72:122" style={styles.background} />
 			<Text testID="72:124" style={styles.buttonLabel}>
-				{`Button Label`}
+				{props.label}
 			</Text>
 		</View>
 	);
