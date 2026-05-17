@@ -8,7 +8,7 @@ export default function HomeScreen() {
 	return (
 		<ThemedView style={styles.container}>
 			<SafeAreaView style={styles.safeArea}>
-				<ThemedView style={styles.heroSection}>X</ThemedView>
+				
 
 				{Platform.OS === "web" && <WebBadge />}
 			</SafeAreaView>
