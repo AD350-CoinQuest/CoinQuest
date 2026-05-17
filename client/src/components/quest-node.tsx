@@ -16,7 +16,7 @@ export interface DivQuestNodeProps {
 export function DivQuestNode(props: DivQuestNodeProps) {
 	return (
 		<View testID={props.testID ?? "264:440"} style={[styles.root, props.style]}>
-			<StaticIcon src={props.iconSrc} testID="35:163" variant="$2" />
+			<StaticIcon src={props.iconSrc} testID="35:163" variant="small" />
 			<Text testID="35:165" style={styles.label}>
 				{props.label}
 			</Text>

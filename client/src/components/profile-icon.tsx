@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native-unistyles";
-import { View } from "react-native";
-import { Image } from "react-exo/image";
+import { View, Image } from "react-native";
 import type { ViewStyle, StyleProp } from "react-native";
 
 export interface ProfileIconProps {
@@ -15,7 +14,7 @@ export function ProfileIcon(props: ProfileIconProps) {
 	return (
 		<View testID={props.testID ?? "72:271"} style={[styles.root, props.style]}>
 			<View testID="72:99" style={styles.bg} />
-			<Image url={props.iconSrc ?? ""} width={120} height={120} />
+			<Image src={props.iconSrc ?? ""} width={120} height={120} />
 		</View>
 	);
 }

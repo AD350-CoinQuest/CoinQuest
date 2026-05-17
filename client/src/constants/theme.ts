@@ -45,18 +45,21 @@ export const Fonts = Platform.select({
 		rounded: "ui-rounded",
 		/** iOS `UIFontDescriptorSystemDesignMonospaced` */
 		mono: "ui-monospace",
+		h1: "Rowdies_400Regular",
 	},
 	default: {
 		sans: "normal",
 		serif: "serif",
 		rounded: "normal",
 		mono: "monospace",
+		h1: "Rowdies_400Regular",
 	},
 	web: {
 		sans: "var(--font-display)",
 		serif: "var(--font-serif)",
 		rounded: "var(--font-rounded)",
 		mono: "var(--font-mono)",
+		h1: "Rowdies_400Regular",
 	},
 });
 

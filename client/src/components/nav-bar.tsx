@@ -1,4 +1,3 @@
-import { useVariants } from "react-exo/utils";
 import { StyleSheet } from "react-native-unistyles";
 import { View, Text } from "react-native";
 
@@ -10,8 +9,6 @@ import { Colors } from "@/constants/theme";
 export interface NavNavbarProps {
 	navTransactions: string;
 	variant: (typeof NavNavbarVariants.variant)[number];
-	/** Used to override the default root style. */
-	style?: StyleProp<ViewStyle>;
 	/** Used to locate this view in end-to-end tests. */
 	testID?: string;
 }
@@ -21,74 +18,72 @@ export const NavNavbarVariants = {
 } as const;
 
 export function NavNavbar(props: NavNavbarProps) {
-	const { variant } = props;
-	const { vstyles } = useVariants(NavNavbarVariants, { variant }, styles);
+	// styles.useVariants({
+	// 	size: props.variant,
+	// });
 
 	return (
-		<View
-			testID={props.testID ?? "137:264"}
-			style={[vstyles.root(), props.style]}
-		>
-			<View testID="115:513" style={vstyles.divNavItem()}>
-				<View testID="115:514" style={vstyles.margin()}>
-					<View testID="115:515" style={vstyles.divIconBox()}>
+		<View testID={props.testID ?? "137:264"} style={styles.root}>
+			<View testID="115:513" style={styles.divNavItem}>
+				<View testID="115:514" style={styles.margin}>
+					<View testID="115:515" style={styles.divIconBox}>
 						<StaticIcon
 							src={require("@/assets/images/icon-home.svg")}
 							testID="115:516"
-							variant="$6"
+							variant="small"
 						/>
 					</View>
 				</View>
-				<View testID="115:517" style={vstyles.margin2()}>
-					<Text testID="115:518" style={vstyles.home()}>
+				<View testID="115:517" style={styles.margin2}>
+					<Text testID="115:518" style={styles.home}>
 						HOME
 					</Text>
 				</View>
 			</View>
-			<View testID="115:519" style={vstyles.divNavItem2()}>
-				<View testID="115:520" style={vstyles.margin3()}>
-					<View testID="115:521" style={vstyles.divIconBox2()}>
+			<View testID="115:519" style={styles.divNavItem2}>
+				<View testID="115:520" style={styles.margin3}>
+					<View testID="115:521" style={styles.divIconBox2}>
 						<StaticIcon
 							src={require("@/assets/images/icon-transactions.svg")}
 							testID="115:522"
-							variant="$7"
+							variant="small"
 						/>
 					</View>
 				</View>
-				<View testID="115:523" style={vstyles.margin4()}>
-					<Text testID="137:444" style={vstyles.transactions()}>
+				<View testID="115:523" style={styles.margin4}>
+					<Text testID="137:444" style={styles.transactions}>
 						TRANSACTIONS
 					</Text>
 				</View>
 			</View>
-			<View testID="115:525" style={vstyles.divNavItem3()}>
-				<View testID="115:526" style={vstyles.margin5()}>
-					<View testID="115:527" style={vstyles.divIconBox3()}>
+			<View testID="115:525" style={styles.divNavItem3}>
+				<View testID="115:526" style={styles.margin5}>
+					<View testID="115:527" style={styles.divIconBox3}>
 						<StaticIcon
 							src={require("@/assets/images/icon-achievements.svg")}
 							testID="115:528"
-							variant="$8"
+							variant="small"
 						/>
 					</View>
 				</View>
-				<View testID="115:529" style={vstyles.margin6()}>
-					<Text testID="115:530" style={vstyles.achievements()}>
+				<View testID="115:529" style={styles.margin6}>
+					<Text testID="115:530" style={styles.achievements}>
 						ACHIEVEMENTS
 					</Text>
 				</View>
 			</View>
-			<View testID="115:531" style={vstyles.divNavItem4()}>
-				<View testID="115:532" style={vstyles.margin7()}>
-					<View testID="115:533" style={vstyles.divIconBox4()}>
+			<View testID="115:531" style={styles.divNavItem4}>
+				<View testID="115:532" style={styles.margin7}>
+					<View testID="115:533" style={styles.divIconBox4}>
 						<StaticIcon
 							src={require("@/assets/images/icon-profile.svg")}
 							testID="115:534"
-							variant="$9"
+							variant="small"
 						/>
 					</View>
 				</View>
 				<View testID="115:535" style={styles.margin8}>
-					<Text testID="115:536" style={vstyles.profile()}>
+					<Text testID="115:536" style={styles.profile}>
 						PROFILE
 					</Text>
 				</View>
@@ -144,20 +139,38 @@ const styles = StyleSheet.create({
 		borderWidth: 5,
 		borderStyle: "solid",
 		borderColor: Colors.secondary,
-	},
-	divIconBoxProperty1NavTransactions: {
-		width: 48,
-		height: 48,
-		paddingTop: 2,
-		paddingLeft: 2,
-		paddingBottom: 2,
-		paddingRight: 2,
-		borderBottomLeftRadius: 10,
-		borderBottomRightRadius: 10,
-		borderTopLeftRadius: 10,
-		borderTopRightRadius: 10,
-		borderWidth: 2,
-		backgroundColor: Colors.primary,
+		variants: {
+			selected: {
+				NavTransactions: {
+					width: 48,
+					height: 48,
+					paddingTop: 2,
+					paddingLeft: 2,
+					paddingBottom: 2,
+					paddingRight: 2,
+					borderBottomLeftRadius: 10,
+					borderBottomRightRadius: 10,
+					borderTopLeftRadius: 10,
+					borderTopRightRadius: 10,
+					borderWidth: 2,
+					backgroundColor: Colors.primary,
+				},
+				NavAchievements: {
+					width: 48,
+					height: 48,
+					paddingTop: 2,
+					paddingLeft: 2,
+					paddingBottom: 2,
+					paddingRight: 2,
+					borderBottomLeftRadius: 10,
+					borderBottomRightRadius: 10,
+					borderTopLeftRadius: 10,
+					borderTopRightRadius: 10,
+					borderWidth: 2,
+					backgroundColor: Colors.primary,
+				},
+			},
+		},
 	},
 	divIconBoxProperty1NavAchievements: {
 		width: 48,
