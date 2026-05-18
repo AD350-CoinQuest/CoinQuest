@@ -1,7 +1,6 @@
 import { StyleSheet } from "react-native-unistyles";
 import { View, Image } from "react-native";
-
-import type { ViewStyle, StyleProp } from "react-native";
+import { Spacing } from "@/constants/theme";
 
 export interface StaticIconProps {
 	src: string;
@@ -21,28 +20,30 @@ export default function StaticIcon(props: StaticIconProps) {
 
 	return (
 		<View testID={props.testID ?? "35:94"} style={styles.root}>
-			<Image source={{ uri: props.src }} />
+			<Image
+				source={{ uri: props.src }}
+				width={Spacing.six}
+				height={Spacing.six}
+			/>
 		</View>
 	);
 }
 
 const styles = StyleSheet.create((theme) => ({
 	root: {
-		width: 32,
-		height: 32,
 		variants: {
 			size: {
 				large: {
-					width: 40,
-					height: 40,
+					width: Spacing.six,
+					height: Spacing.six,
 				},
 				regular: {
-					width: 28.6,
-					height: 28.6,
+					width: Spacing.five,
+					height: Spacing.five,
 				},
 				small: {
-					width: 26,
-					height: 26,
+					width: Spacing.four,
+					height: Spacing.four,
 				},
 			},
 		},

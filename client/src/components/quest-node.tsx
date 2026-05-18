@@ -1,21 +1,18 @@
 import { StyleSheet } from "react-native-unistyles";
 import { View, Text } from "react-native";
-import type { ViewStyle, StyleProp } from "react-native";
 import StaticIcon from "./static-icon";
-import { Colors } from "@/constants/theme";
+import { Colors, Spacing } from "@/constants/theme";
 
 export interface DivQuestNodeProps {
 	iconSrc: string;
 	label: string;
-	/** Used to override the default root style. */
-	style?: StyleProp<ViewStyle>;
 	/** Used to locate this view in end-to-end tests. */
 	testID?: string;
 }
 
 export function DivQuestNode(props: DivQuestNodeProps) {
 	return (
-		<View testID={props.testID ?? "264:440"} style={[styles.root, props.style]}>
+		<View testID={props.testID ?? "264:440"} style={styles.root}>
 			<StaticIcon src={props.iconSrc} testID="35:163" variant="small" />
 			<Text testID="35:165" style={styles.label}>
 				{props.label}
@@ -26,8 +23,8 @@ export function DivQuestNode(props: DivQuestNodeProps) {
 
 const styles = StyleSheet.create({
 	root: {
-		width: 61,
-		height: 61,
+		width: Spacing.six,
+		height: Spacing.six,
 		paddingTop: 3,
 		paddingLeft: 3,
 		paddingBottom: 3,

@@ -1,14 +1,12 @@
-import { Platform, StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFonts } from "@expo-google-fonts/rowdies/useFonts";
 import { Rowdies_400Regular } from "@expo-google-fonts/rowdies/400Regular";
 import { ThemedView } from "@/components/themed-view";
-import { WebBadge } from "@/components/web-badge";
 import { DivQuestNode } from "@/components/quest-node";
 import {
 	BottomTabInset,
 	Colors,
-	Fonts,
 	MaxContentWidth,
 	Spacing,
 } from "@/constants/theme";
@@ -38,10 +36,10 @@ export default function HomeScreen() {
 function QuestMap() {
 	return (
 		<View>
-			<DivQuestNode iconSrc={IconIncome} label="Income" />
-			<DivQuestNode iconSrc={IconBudget} label="Budget" />
+			<DivQuestNode iconSrc={"@/images/icon-income.svg"} label="Income" />
+			{/* <DivQuestNode iconSrc={IconBudget} label="Budget" />
 			<DivQuestNode iconSrc={IconReward} label="Reward" />
-			<DivQuestNode iconSrc={IconAddExpense} label="Add Expense" />
+			<DivQuestNode iconSrc={IconAddExpense} label="Add Expense" /> */}
 		</View>
 	);
 }
