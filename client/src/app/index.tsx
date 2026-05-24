@@ -2,6 +2,7 @@ import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFonts } from "@expo-google-fonts/rowdies/useFonts";
 import { Rowdies_400Regular } from "@expo-google-fonts/rowdies/400Regular";
+import { Roboto_400Regular } from "@expo-google-fonts/roboto/400Regular";
 import { ThemedView } from "@/components/themed-view";
 import { DivQuestNode } from "@/components/quest-node";
 import {
@@ -16,18 +17,15 @@ import IconReward from "@/assets/images/icon-reward.svg";
 import IconAddExpense from "@/assets/images/icon-addexpense.svg";
 
 export default function HomeScreen() {
-	const [CustomFonts] = useFonts({
+	useFonts({
 		Rowdies_400Regular,
+		Roboto_400Regular,
 	});
 
 	return (
 		<ThemedView style={styles.container}>
 			<SafeAreaView style={styles.safeArea}>
-				<ThemedView style={styles.heroSection}>
-					<QuestMap />
-				</ThemedView>
-
-				{/* {Platform.OS === "web" && <WebBadge />} */}
+				<QuestMap />
 			</SafeAreaView>
 		</ThemedView>
 	);
@@ -35,11 +33,27 @@ export default function HomeScreen() {
 
 function QuestMap() {
 	return (
-		<View>
-			<DivQuestNode iconSrc={"@/images/icon-income.svg"} label="Income" />
-			{/* <DivQuestNode iconSrc={IconBudget} label="Budget" />
-			<DivQuestNode iconSrc={IconReward} label="Reward" />
-			<DivQuestNode iconSrc={IconAddExpense} label="Add Expense" /> */}
+		<View style={styles.quest_map}>
+			<DivQuestNode
+				style={styles.quest_income}
+				iconSrc={IconIncome}
+				label="Income"
+			/>
+			<DivQuestNode
+				style={styles.quest_budget}
+				iconSrc={IconBudget}
+				label="Budget"
+			/>
+			<DivQuestNode
+				style={styles.quest_reward}
+				iconSrc={IconReward}
+				label="Reward"
+			/>
+			<DivQuestNode
+				style={styles.quest_expense}
+				iconSrc={IconAddExpense}
+				label="Add Expense"
+			/>
 		</View>
 	);
 }
@@ -58,15 +72,6 @@ const styles = StyleSheet.create({
 		paddingBottom: BottomTabInset + Spacing.three,
 		maxWidth: MaxContentWidth,
 	},
-	heroSection: {
-		width: "100%",
-		alignItems: "center",
-		justifyContent: "flex-start",
-		flex: 1,
-		gap: Spacing.four,
-		paddingTop: Spacing.six,
-		backgroundColor: Colors.background,
-	},
 	title: {
 		textAlign: "center",
 	},
@@ -79,5 +84,26 @@ const styles = StyleSheet.create({
 		paddingHorizontal: Spacing.three,
 		paddingVertical: Spacing.four,
 		borderRadius: Spacing.four,
+	},
+	quest_map: {
+		width: "100%",
+		alignItems: "center",
+		justifyContent: "flex-start",
+		flex: 1,
+		gap: Spacing.four,
+		paddingTop: Spacing.six,
+		backgroundColor: Colors.background,
+	},
+	quest_income: {
+		alignSelf: "flex-start",
+	},
+	quest_budget: {
+		alignSelf: "flex-end",
+	},
+	quest_reward: {
+		alignSelf: "flex-start",
+	},
+	quest_expense: {
+		alignSelf: "flex-end",
 	},
 });

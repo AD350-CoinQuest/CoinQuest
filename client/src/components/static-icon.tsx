@@ -1,9 +1,9 @@
-import { StyleSheet } from "react-native-unistyles";
-import { View, Image } from "react-native";
+import { Image, StyleSheet } from "react-native";
 import { Spacing } from "@/constants/theme";
+import { SvgUri } from "react-native-svg";
 
 export interface StaticIconProps {
-	src: string;
+	source: { uri: string; width: number; height: number };
 	variant: (typeof StaticIconVariants.variant)[number];
 	/** Used to locate this view in end-to-end tests. */
 	testID?: string;
@@ -14,38 +14,32 @@ export const StaticIconVariants = {
 } as const;
 
 export default function StaticIcon(props: StaticIconProps) {
-	styles.useVariants({
-		size: props.variant,
-	});
+	console.log("PROPS", props);
 
 	return (
-		<View testID={props.testID ?? "35:94"} style={styles.root}>
-			<Image
-				source={{ uri: props.src }}
-				width={Spacing.six}
-				height={Spacing.six}
-			/>
-		</View>
+		<SvgUri
+			style={styles.root}
+			uri={props.source.uri}
+			width={styles[props.variant].width}
+			height={styles[props.variant].height}
+		/>
 	);
 }
 
-const styles = StyleSheet.create((theme) => ({
+const styles = StyleSheet.create({
 	root: {
-		variants: {
-			size: {
-				large: {
-					width: Spacing.six,
-					height: Spacing.six,
-				},
-				regular: {
-					width: Spacing.five,
-					height: Spacing.five,
-				},
-				small: {
-					width: Spacing.four,
-					height: Spacing.four,
-				},
-			},
-		},
+		padding: 2,
 	},
-}));
+	large: {
+		width: Spacing.six,
+		height: Spacing.six,
+	},
+	regular: {
+		width: Spacing.five,
+		height: Spacing.five,
+	},
+	small: {
+		width: Spacing.four,
+		height: Spacing.four,
+	},
+});
