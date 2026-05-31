@@ -1,22 +1,23 @@
-import { StyleSheet } from "react-native-unistyles";
-import { View, Text } from "react-native";
-import type { ViewStyle, StyleProp } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import StaticIcon from "./static-icon";
-import { Colors } from "@/constants/theme";
+import { Colors, Fonts, Spacing } from "@/constants/theme";
 
 export interface DivQuestNodeProps {
-	iconSrc: string;
+	style: any;
+	iconSrc: { uri: string; width: number; height: number };
 	label: string;
-	/** Used to override the default root style. */
-	style?: StyleProp<ViewStyle>;
 	/** Used to locate this view in end-to-end tests. */
 	testID?: string;
 }
 
 export function DivQuestNode(props: DivQuestNodeProps) {
+	console.log(styles.root);
 	return (
-		<View testID={props.testID ?? "264:440"} style={[styles.root, props.style]}>
-			<StaticIcon src={props.iconSrc} testID="35:163" variant="$2" />
+		<View
+			testID={props.testID ?? "264:440"}
+			style={{ ...styles, ...styles.root }}
+		>
+			<StaticIcon source={props.iconSrc} testID="35:163" variant="regular" />
 			<Text testID="35:165" style={styles.label}>
 				{props.label}
 			</Text>
@@ -26,31 +27,24 @@ export function DivQuestNode(props: DivQuestNodeProps) {
 
 const styles = StyleSheet.create({
 	root: {
-		width: 61,
-		height: 61,
-		paddingTop: 3,
-		paddingLeft: 3,
-		paddingBottom: 3,
-		paddingRight: 3,
+		backgroundColor: Colors.surface,
+		width: Spacing.six,
+		height: Spacing.six,
+		padding: 3,
 		flexDirection: "column",
 		justifyContent: "center",
 		alignItems: "center",
-		borderBottomLeftRadius: 12,
-		borderBottomRightRadius: 12,
-		borderTopLeftRadius: 12,
-		borderTopRightRadius: 12,
+		borderRadius: 12,
 		borderWidth: 3,
 		borderStyle: "solid",
 		borderColor: "black",
-		backgroundColor: Colors.surface,
-		shadowColor: "rgba(0, 0, 0, 1)",
+		shadowColor: "black",
 		shadowRadius: 0,
 		shadowOffset: { width: 4, height: 4 },
 	},
 	label: {
-		color: Colors.background,
 		textAlign: "center",
-		fontFamily: "Roboto",
+		fontFamily: Fonts.body,
 		fontSize: 10,
 		fontStyle: "normal",
 		fontWeight: 700,

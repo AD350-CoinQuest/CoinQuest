@@ -28,9 +28,6 @@ export default function AppTabs() {
 					<TabTrigger name="transactions" href="/transactions" asChild>
 						<TabButton>Transactions</TabButton>
 					</TabTrigger>
-					<TabTrigger name="explore" href="/explore" asChild>
-						<TabButton>Explore</TabButton>
-					</TabTrigger>
 				</CustomTabList>
 			</TabList>
 		</Tabs>
@@ -90,6 +87,7 @@ export function CustomTabList(props: TabListProps) {
 const styles = StyleSheet.create({
 	tabListContainer: {
 		position: "absolute",
+		bottom: 0,
 		width: "100%",
 		padding: Spacing.three,
 		justifyContent: "center",

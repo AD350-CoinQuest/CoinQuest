@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native-unistyles";
-import { View, Text } from "react-native";
-import { Image } from "react-exo/image";
+import { View, Text, Image } from "react-native";
 
 import type { ViewStyle, StyleProp } from "react-native";
 import { Colors } from "@/constants/theme";
@@ -20,7 +19,7 @@ export function AchievementIcon(props: AchievementIconProps) {
 			<Text testID="64:203" style={styles.labelText}>
 				{props.labelString}
 			</Text>
-			<Image url={props.iconSrc} width={104} height={104} />
+			<Image src={props.iconSrc} width={104} height={104} />
 		</View>
 	);
 }

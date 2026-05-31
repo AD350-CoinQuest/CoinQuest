@@ -1,59 +1,45 @@
-import { useVariants } from "react-exo/utils";
-import { StyleSheet } from "react-native-unistyles";
-import { View, Image } from "react-native";
-
-import type { ViewStyle, StyleProp } from "react-native";
+import { Image, StyleSheet } from "react-native";
+import { Spacing } from "@/constants/theme";
+import { SvgUri } from "react-native-svg";
 
 export interface StaticIconProps {
-	src: string;
+	source: { uri: string; width: number; height: number };
 	variant: (typeof StaticIconVariants.variant)[number];
-	/** Used to override the default root style. */
-	style?: StyleProp<ViewStyle>;
 	/** Used to locate this view in end-to-end tests. */
 	testID?: string;
 }
 
 export const StaticIconVariants = {
-	variant: ["$2", "$3", "$4", "$5", "$6", "$7", "$8", "$9"],
+	variant: ["small", "regular", "large"],
 } as const;
 
 export default function StaticIcon(props: StaticIconProps) {
-	const { variant } = props;
-	const { vstyles } = useVariants(StaticIconVariants, { variant }, styles);
+	console.log("PROPS", props);
 
 	return (
-		<View
-			testID={props.testID ?? "35:94"}
-			style={[vstyles.root(), props.style]}
-		>
-			<Image source={{ uri: props.src }} />
-		</View>
+		<SvgUri
+			style={styles.root}
+			uri={props.source.uri}
+			width={styles[props.variant].width}
+			height={styles[props.variant].height}
+		/>
 	);
 }
 
-const styles = StyleSheet.create((theme) => ({
+const styles = StyleSheet.create({
 	root: {
-		width: 32,
-		height: 32,
+		padding: 2,
 	},
-	rootVariant5: {
-		width: 40,
-		height: 40,
+	large: {
+		width: Spacing.six,
+		height: Spacing.six,
 	},
-	rootVariant6: {
-		width: 28.6,
-		height: 28.6,
+	regular: {
+		width: Spacing.five,
+		height: Spacing.five,
 	},
-	rootVariant7: {
-		width: 26,
-		height: 26,
+	small: {
+		width: Spacing.four,
+		height: Spacing.four,
 	},
-	rootVariant8: {
-		width: 26,
-		height: 26,
-	},
-	rootVariant9: {
-		width: 26,
-		height: 26,
-	},
-}));
+});

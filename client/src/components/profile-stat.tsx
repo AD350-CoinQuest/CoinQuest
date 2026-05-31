@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native-unistyles";
-import { View, Text } from "react-native";
-import { Image } from "react-exo/image";
+import { View, Text, Image } from "react-native";
 
 import type { ViewStyle, StyleProp } from "react-native";
 
@@ -23,7 +22,7 @@ export function ProfileStat(props: ProfileStatProps) {
 			<Text testID="72:202" style={styles.metric}>
 				{props.statMetricLabel ?? ""}
 			</Text>
-			<Image url={props.iconSrc ?? ""} width={64} height={64} />
+			<Image src={props.iconSrc ?? ""} width={64} height={64} />
 		</View>
 	);
 }
