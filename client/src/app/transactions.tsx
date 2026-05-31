@@ -1,29 +1,48 @@
+import { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { supabase } from "../../lib/supabase";
 
 export default function TransactionsScreen() {
+  const [transactions, setTransactions] = useState<any[]>([]);
+
+  useEffect(() => {
+    getTransactions();
+  }, []);
+
+  async function getTransactions() {
+    const { data, error } = await supabase
+      .from("transactions")
+      .select("*")
+      .order("transaction_date", { ascending: false });
+
+    if (error) {
+      console.log(error);
+    } else {
+      setTransactions(data || []);
+    }
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>EXPENSES</Text>
 
       <Text style={styles.sectionTitle}>HISTORY LOG</Text>
 
-      <View style={styles.transactionItem}>
-        <View>
-          <Text style={styles.date}>FEB 22</Text>
-          <Text style={styles.name}>CYBERPUNK CAFE</Text>
+      {transactions.map((item) => (
+        <View key={item.id} style={styles.transactionItem}>
+          <View>
+            <Text style={styles.date}>{item.transaction_date}</Text>
+
+            <Text style={styles.name}>
+              {item.description}
+            </Text>
+          </View>
+
+          <Text style={styles.amount}>
+            -${item.amount}
+          </Text>
         </View>
-
-        <Text style={styles.amount}>-$12.50</Text>
-      </View>
-
-      <View style={styles.transactionItem}>
-        <View>
-          <Text style={styles.date}>FEB 21</Text>
-          <Text style={styles.name}>VAPOR MART</Text>
-        </View>
-
-        <Text style={styles.amount}>-$45.00</Text>
-      </View>
+      ))}
     </View>
   );
 }
