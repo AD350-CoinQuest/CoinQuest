@@ -5,7 +5,6 @@ import { SvgUri } from "react-native-svg";
 export interface StaticIconProps {
 	source: { uri: string; width: number; height: number };
 	variant: (typeof StaticIconVariants.variant)[number];
-	/** Used to locate this view in end-to-end tests. */
 	testID?: string;
 }
 

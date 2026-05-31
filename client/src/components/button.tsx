@@ -1,5 +1,4 @@
-import { StyleSheet } from "react-native-unistyles";
-import { View, Text } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 
 import type { ViewStyle, StyleProp } from "react-native";
 
@@ -22,14 +21,14 @@ export function Button(props: ButtonProps) {
 	);
 }
 
-const styles = StyleSheet.create((theme) => ({
+const styles = StyleSheet.create({
 	root: {
 		width: 480,
-		height: 79,
+		height: 80,
 	},
 	background: {
 		width: 480,
-		height: 79,
+		height: 80,
 		borderBottomLeftRadius: 8,
 		borderBottomRightRadius: 8,
 		borderTopLeftRadius: 8,
@@ -48,4 +47,4 @@ const styles = StyleSheet.create((theme) => ({
 		fontWeight: "300",
 		letterSpacing: 2,
 	},
-}));
+});
