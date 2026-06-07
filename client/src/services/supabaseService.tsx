@@ -63,4 +63,22 @@ export class SupabaseService {
       .from("transactions")
       .insert([transaction]);
   }
+  static async getTransactions() {
+  return await supabase
+    .from("transactions")
+    .select("*")
+    .order("transaction_date", { ascending: false });
+}
+
+  static async addTransaction(transaction: {
+    profile_id: string;
+    amount: number;
+    description?: string;
+    category?: string;
+    transaction_date?: string;
+  }) {
+  return await supabase
+    .from("transactions")
+    .insert([transaction]);
+  }
 }
