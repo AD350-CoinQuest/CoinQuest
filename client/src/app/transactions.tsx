@@ -7,7 +7,7 @@ import {
   Modal,
   TextInput,
 } from "react-native";
-import { supabase } from "../../lib/supabase";
+import { SupabaseService } from "../services/supabaseService";
 
 export default function TransactionsScreen() {
   const [transactions, setTransactions] = useState<any[]>([]);
@@ -18,32 +18,26 @@ export default function TransactionsScreen() {
   const [category, setCategory] = useState("");
   const [transactionDate, setTransactionDate] = useState("");
 
+  const TEST_PROFILE_ID = "TEST_PROFILE_ID_HERE";
+
   useEffect(() => {
-    getTransactions();
+    SupabaseService.getTransactions().then(({ data, error }) => {
+      if (error) {
+        console.log(error);
+      } else {
+        setTransactions(data || []);
+      }
+    });
   }, []);
 
-  async function getTransactions() {
-    const { data, error } = await supabase
-      .from("transactions")
-      .select("*")
-      .order("transaction_date", { ascending: false });
-
-    if (error) {
-      console.log(error);
-    } else {
-      setTransactions(data || []);
-    }
-  }
-
-  async function addTransaction() {
-    const { error } = await supabase.from("transactions").insert([
-      {
-        description: description,
-        amount: Number(amount),
-        category: category,
-        transaction_date: transactionDate || undefined,
-      },
-    ]);
+  async function handleAddTransaction() {
+    const { error } = await SupabaseService.addTransaction({
+      profile_id: TEST_PROFILE_ID,
+      amount: Number(amount),
+      description,
+      category,
+      transaction_date: transactionDate || undefined,
+    });
 
     if (error) {
       console.log(error);
@@ -53,7 +47,9 @@ export default function TransactionsScreen() {
       setCategory("");
       setTransactionDate("");
       setModalVisible(false);
-      getTransactions();
+
+      const { data } = await SupabaseService.getTransactions();
+      setTransactions(data || []);
     }
   }
 
@@ -61,7 +57,10 @@ export default function TransactionsScreen() {
     <View style={styles.container}>
       <Text style={styles.header}>EXPENSES</Text>
 
-      <Pressable style={styles.addButton} onPress={() => setModalVisible(true)}>
+      <Pressable
+        style={styles.addButton}
+        onPress={() => setModalVisible(true)}
+      >
         <Text style={styles.addButtonText}>ADD TRANSACTION</Text>
       </Pressable>
 
@@ -113,7 +112,10 @@ export default function TransactionsScreen() {
               onChangeText={setTransactionDate}
             />
 
-            <Pressable style={styles.saveButton} onPress={addTransaction}>
+            <Pressable
+              style={styles.saveButton}
+              onPress={handleAddTransaction}
+            >
               <Text style={styles.buttonText}>Save</Text>
             </Pressable>
 
