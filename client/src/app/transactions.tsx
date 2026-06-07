@@ -18,7 +18,7 @@ export default function TransactionsScreen() {
   const [category, setCategory] = useState("");
   const [transactionDate, setTransactionDate] = useState("");
 
-  const TEST_PROFILE_ID = "TEST_PROFILE_ID_HERE";
+  const TEST_PROFILE_ID = "test";
 
   useEffect(() => {
     SupabaseService.getTransactions().then(({ data, error }) => {
@@ -31,6 +31,7 @@ export default function TransactionsScreen() {
   }, []);
 
   async function handleAddTransaction() {
+  try {
     const { error } = await SupabaseService.addTransaction({
       profile_id: TEST_PROFILE_ID,
       amount: Number(amount),
@@ -40,18 +41,22 @@ export default function TransactionsScreen() {
     });
 
     if (error) {
-      console.log(error);
-    } else {
-      setDescription("");
-      setAmount("");
-      setCategory("");
-      setTransactionDate("");
-      setModalVisible(false);
-
-      const { data } = await SupabaseService.getTransactions();
-      setTransactions(data || []);
+      throw error;
     }
+
+    setDescription("");
+    setAmount("");
+    setCategory("");
+    setTransactionDate("");
+    setModalVisible(false);
+
+    const { data } = await SupabaseService.getTransactions();
+
+    setTransactions(data || []);
+  } catch (e) {
+    console.error(e);
   }
+}
 
   return (
     <View style={styles.container}>
