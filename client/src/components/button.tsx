@@ -1,16 +1,15 @@
-import { StyleSheet } from "react-native-unistyles";
-import { View, Text } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 
 import type { ViewStyle, StyleProp } from "react-native";
 
 export interface ButtonProps {
 	label: string;
-	/** Used to override the default root style. */
+	icon?: { uri: string; width: string; height: string };
 	style?: StyleProp<ViewStyle>;
-	/** Used to locate this view in end-to-end tests. */
 	testID?: string;
 }
 
+// TO DO: Add optional icon to left side of button
 export function Button(props: ButtonProps) {
 	return (
 		<View testID={props.testID ?? "72:123"} style={[styles.root, props.style]}>
@@ -22,14 +21,14 @@ export function Button(props: ButtonProps) {
 	);
 }
 
-const styles = StyleSheet.create((theme) => ({
+const styles = StyleSheet.create({
 	root: {
 		width: 480,
-		height: 79,
+		height: 80,
 	},
 	background: {
 		width: 480,
-		height: 79,
+		height: 80,
 		borderBottomLeftRadius: 8,
 		borderBottomRightRadius: 8,
 		borderTopLeftRadius: 8,
@@ -48,4 +47,4 @@ const styles = StyleSheet.create((theme) => ({
 		fontWeight: "300",
 		letterSpacing: 2,
 	},
-}));
+});
