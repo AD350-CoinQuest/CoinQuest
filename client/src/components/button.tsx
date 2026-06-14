@@ -4,12 +4,12 @@ import type { ViewStyle, StyleProp } from "react-native";
 
 export interface ButtonProps {
 	label: string;
-	/** Used to override the default root style. */
+	icon?: { uri: string; width: string; height: string };
 	style?: StyleProp<ViewStyle>;
-	/** Used to locate this view in end-to-end tests. */
 	testID?: string;
 }
 
+// TO DO: Add optional icon to left side of button
 export function Button(props: ButtonProps) {
 	return (
 		<View testID={props.testID ?? "72:123"} style={[styles.root, props.style]}>
