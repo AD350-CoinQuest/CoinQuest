@@ -15,12 +15,31 @@ import IconIncome from "@/assets/images/icon-income.svg";
 import IconBudget from "@/assets/images/icon-budget.svg";
 import IconReward from "@/assets/images/icon-reward.svg";
 import IconAddExpense from "@/assets/images/icon-addexpense.svg";
+import { useEffect } from "react";
+import { SupabaseService } from "@/services/supabaseService";
 
 export default function HomeScreen() {
 	useFonts({
 		Rowdies_400Regular,
 		Roboto_400Regular,
 	});
+
+	useEffect(() => {
+		try {
+			const profileId = process.env.EXPO_PUBLIC_PROFILE_ID || "";
+			SupabaseService.getProfileById(profileId).then((res) => {
+				console.log(res.data);
+				if (!res.data) {
+					throw Error("Null data from response");
+					// return;
+				}
+
+				sessionStorage.setItem("profile", JSON.stringify(res.data));
+			});
+		} catch (e) {
+			console.error(e);
+		}
+	}, []);
 
 	return (
 		<ThemedView style={styles.container}>

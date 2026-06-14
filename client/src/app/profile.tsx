@@ -65,22 +65,20 @@ export default function ProfileScreen() {
 	});
 
 	useEffect(() => {
-		try {
-			SupabaseService.getProfileById("test").then((res) => {
-				if (!res.data) {
-					// throw Error("Null data from response");
-					return;
-				}
-				const data = JSON.parse(res.data);
-				const profile = {
-					name: data.username,
-					email: data.email,
-				} as ProfileData;
-				setProfileData(profile);
-			});
-		} catch (e) {
-			console.error(e);
+		const loadedData = sessionStorage.getItem("profile");
+		if (!loadedData) {
+			return;
 		}
+		const loadedJSON = JSON.parse(loadedData);
+		if (!loadedJSON) {
+			return;
+		}
+
+		setProfileData({
+			...profileData,
+			name: loadedJSON["username"],
+			email: loadedJSON["email"],
+		});
 	}, []);
 
 	return (
