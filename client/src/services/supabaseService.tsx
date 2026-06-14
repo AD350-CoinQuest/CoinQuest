@@ -40,6 +40,13 @@ export class SupabaseService {
 			.single();
 	}
 
+	static async getTransactionsByProfileId(profileid: string) {
+		return await supabase
+			.from("transactions")
+			.select("*")
+			.eq("profile_id", profileid);
+	}
+
 	static async postTransaction(transaction: {
 		profile_id: string;
 		budget_id?: string;
